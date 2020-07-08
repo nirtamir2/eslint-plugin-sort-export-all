@@ -1,6 +1,5 @@
 import { Rule } from "eslint";
-import * as ESTree from "estree";
-
+import ESTree from "estree";
 import naturalCompare from "natural-compare";
 
 const isValidOrders = {
