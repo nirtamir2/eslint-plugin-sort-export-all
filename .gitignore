@@ -88,3 +88,6 @@ typings/
 
 lib/
 .DS_Store
+
+.idea/shelf
+.idea/workspace.xml

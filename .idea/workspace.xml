@@ -27,6 +27,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b115e6b6-3c0d-4f01-bd29-a41b0f9495a8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rules/sort-export-all.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rules/sort-export-all.test.ts" afterDir="false" />
     </list>
@@ -205,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594207721362</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="remove logs">
+      <created>1594212673384</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1594212673384</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,17 +255,18 @@
     <MESSAGE value="fix" />
     <MESSAGE value="better export" />
     <MESSAGE value="add repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="add repository" />
+    <MESSAGE value="remove logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove logs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="207" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594200057133">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="499" y="207" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594200057133" />
-    <state x="393" y="29" key="CommitChangelistDialog2" timestamp="1594207721086">
+    <state x="393" y="29" key="CommitChangelistDialog2" timestamp="1594212673084">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="393" y="29" key="CommitChangelistDialog2/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594207721086" />
+    <state x="393" y="29" key="CommitChangelistDialog2/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594212673084" />
     <state x="93" y="93" width="1350" height="734" key="DiffContextDialog" timestamp="1594190493633">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -286,14 +295,14 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="368" y="71" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594205927282" />
-    <state x="479" y="164" width="578" height="616" key="find.popup" timestamp="1594205732819">
+    <state x="479" y="164" width="578" height="616" key="find.popup" timestamp="1594212635949">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="479" y="164" width="578" height="616" key="find.popup/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594205732819" />
-    <state x="431" y="195" width="672" height="678" key="search.everywhere.popup" timestamp="1594204396358">
+    <state x="479" y="164" width="578" height="616" key="find.popup/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594212635949" />
+    <state x="431" y="195" width="672" height="678" key="search.everywhere.popup" timestamp="1594212922090">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="431" y="195" width="672" height="678" key="search.everywhere.popup/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594204396358" />
+    <state x="431" y="195" width="672" height="678" key="search.everywhere.popup/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594212922090" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
