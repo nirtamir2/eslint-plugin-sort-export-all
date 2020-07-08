@@ -26,7 +26,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b115e6b6-3c0d-4f01-bd29-a41b0f9495a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +82,7 @@
       <workItem from="1594189372139" duration="11358000" />
       <workItem from="1594201931612" duration="746000" />
       <workItem from="1594202947773" duration="48000" />
-      <workItem from="1594203000454" duration="738000" />
+      <workItem from="1594203000454" duration="1052000" />
     </task>
     <task id="LOCAL-00001" summary="upgrade deps">
       <created>1594189606035</created>
@@ -154,7 +154,21 @@
       <option name="project" value="LOCAL" />
       <updated>1594203715008</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="initial commit">
+      <created>1594203741085</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1594203741085</updated>
+    </task>
+    <task id="LOCAL-00012" summary="initial commit">
+      <created>1594203748991</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1594203748991</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,10 +214,10 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="499" y="207" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594200057133" />
-    <state x="393" y="29" key="CommitChangelistDialog2" timestamp="1594203714741">
+    <state x="393" y="29" key="CommitChangelistDialog2" timestamp="1594203748722">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="393" y="29" key="CommitChangelistDialog2/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594203714741" />
+    <state x="393" y="29" key="CommitChangelistDialog2/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594203748722" />
     <state x="93" y="93" width="1350" height="734" key="DiffContextDialog" timestamp="1594190493633">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
