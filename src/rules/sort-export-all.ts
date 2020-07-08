@@ -77,17 +77,21 @@ const sortExportAll: Rule.RuleModule = {
         if (node.type !== "ExportAllDeclaration") {
           return;
         }
-        if (prevNode == null) {
-          prevNode = node;
-          return;
-        }
         if (
+          prevNode != null &&
           typeof node.source.value === "string" &&
           typeof prevNode.source.value === "string"
         ) {
           const thisName = node.source.value;
           const prevName = prevNode.source.value;
+          console.log("thisName", thisName, "prevName", prevName);
+          console.log(
+            "isValidOrder(thisName, prevName)",
+            isValidOrder(thisName, prevName)
+          );
+
           if (isValidOrder(thisName, prevName)) {
+            console.log("REPORTING");
             context.report({
               message:
                 "Expected export * order to be in {{natural}}{{insensitive}}{{order}}. '{{thisName}}' should be before '{{prevName}}'.",
@@ -130,6 +134,7 @@ const sortExportAll: Rule.RuleModule = {
             });
           }
         }
+        prevNode = node;
       },
     };
   },
