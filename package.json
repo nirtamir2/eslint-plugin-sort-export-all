@@ -1,0 +1,59 @@
+{
+  "name": "eslint-plugin-sort-export-all",
+  "version": "1.0.0",
+  "description": "Sort export *",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "build": "tsc",
+    "test": "jest",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "files": [
+    "README.md",
+    "package.json",
+    "lib"
+  ],
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "Nir Tamir <nirtamir2@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/eslint": "^7.2.0",
+    "@types/natural-compare": "^1.4.0",
+    "@types/node": "^14.0.19",
+    "@typescript-eslint/parser": "^3.6.0",
+    "concurrently": "^5.2.0",
+    "eslint": "^7.4.0",
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.1.1",
+    "typescript": "~3.9.6"
+  },
+  "dependencies": {
+    "natural-compare": "^1.4.0"
+  },
+  "peerDependencies": {
+    "eslint": "^4.0.0 || ^5.0.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(src/.*\\.test)\\.ts$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "\\.d\\.ts$",
+      "lib/.*"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json"
+    ]
+  }
+}
