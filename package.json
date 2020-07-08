@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-sort-export-all",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ESLint rule that helps sort export *",
   "main": "lib/index.js",
   "scripts": {
