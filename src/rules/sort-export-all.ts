@@ -59,7 +59,9 @@ export const sortExportAll: Rule.RuleModule = {
   },
   create: (context) => {
     const order = context.options[0] === "desc" ? "desc" : "asc";
-    const options = context.options[1];
+    const options = context.options[1] as
+      | undefined
+      | { caseSensitive?: boolean; natural?: boolean };
     const insensitive = (options && options.caseSensitive) === false;
     const natural = Boolean(options && options.natural);
     const functionName = (order +
@@ -112,7 +114,7 @@ export const sortExportAll: Rule.RuleModule = {
                       fixer.insertTextBefore(
                         toNode,
                         // @ts-ignore
-                        sourceCode.getText(thisComment) + "\n"
+                        `${sourceCode.getText(thisComment)}\n`
                       )
                     );
                     // @ts-ignore
