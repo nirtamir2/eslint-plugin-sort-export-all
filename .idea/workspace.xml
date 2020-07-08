@@ -28,6 +28,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b115e6b6-3c0d-4f01-bd29-a41b0f9495a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594203748991</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="initial commit">
+      <created>1594204795402</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1594204795403</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,10 +223,10 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="499" y="207" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594200057133" />
-    <state x="393" y="29" key="CommitChangelistDialog2" timestamp="1594203748722">
+    <state x="393" y="29" key="CommitChangelistDialog2" timestamp="1594204795114">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="393" y="29" key="CommitChangelistDialog2/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594203748722" />
+    <state x="393" y="29" key="CommitChangelistDialog2/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594204795114" />
     <state x="93" y="93" width="1350" height="734" key="DiffContextDialog" timestamp="1594190493633">
       <screen x="0" y="0" width="1536" height="920" />
     </state>

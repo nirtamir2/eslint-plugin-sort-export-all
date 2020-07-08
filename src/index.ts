@@ -1,6 +1,6 @@
 import sortExportAll from "./rules/sort-export-all";
 
-export = {
+export default {
   rules: {
     "sort-export-all": sortExportAll,
   },
