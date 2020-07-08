@@ -15,6 +15,14 @@ tester.run("sort-export-all", sortExportAll, {
     `,
     },
     {
+      code: `
+      export * from "./BackgroundGradientImage";
+      export * from "./Fab";
+      export * from "./variables/colors";
+      export * from "./variables/dimensions";
+    `,
+    },
+    {
       code: `export * from "./BackgroundGradientImage";
 export * from "./Fab";
 export * from "./variables/colors";

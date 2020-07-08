@@ -84,14 +84,8 @@ export const sortExportAll: Rule.RuleModule = {
         ) {
           const thisName = node.source.value;
           const prevName = prevNode.source.value;
-          console.log("thisName", thisName, "prevName", prevName);
-          console.log(
-            "isValidOrder(thisName, prevName)",
-            isValidOrder(thisName, prevName)
-          );
 
           if (isValidOrder(thisName, prevName)) {
-            console.log("REPORTING");
             context.report({
               message:
                 "Expected export * order to be in {{natural}}{{insensitive}}{{order}}. '{{thisName}}' should be before '{{prevName}}'.",

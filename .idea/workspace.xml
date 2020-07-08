@@ -28,9 +28,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b115e6b6-3c0d-4f01-bd29-a41b0f9495a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rules/sort-export-all.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rules/sort-export-all.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rules/sort-export-all.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rules/sort-export-all.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +191,21 @@
       <option name="project" value="LOCAL" />
       <updated>1594207097994</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="better export">
+      <created>1594207519000</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1594207519000</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add repository">
+      <created>1594207721362</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1594207721362</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,17 +245,19 @@
     <MESSAGE value="remove tutorial stuff" />
     <MESSAGE value="initial commit" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="better export" />
+    <MESSAGE value="add repository" />
+    <option name="LAST_COMMIT_MESSAGE" value="add repository" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="207" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594200057133">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="499" y="207" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594200057133" />
-    <state x="393" y="29" key="CommitChangelistDialog2" timestamp="1594207097701">
+    <state x="393" y="29" key="CommitChangelistDialog2" timestamp="1594207721086">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="393" y="29" key="CommitChangelistDialog2/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594207097701" />
+    <state x="393" y="29" key="CommitChangelistDialog2/1920.0.1536.920/0.0.1536.920@0.0.1536.920" timestamp="1594207721086" />
     <state x="93" y="93" width="1350" height="734" key="DiffContextDialog" timestamp="1594190493633">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
