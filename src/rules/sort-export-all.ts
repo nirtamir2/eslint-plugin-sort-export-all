@@ -30,7 +30,7 @@ const isValidOrders = {
   },
 };
 
-const sortExportAll: Rule.RuleModule = {
+export const sortExportAll: Rule.RuleModule = {
   meta: {
     type: "suggestion",
     fixable: "code",
@@ -139,5 +139,3 @@ const sortExportAll: Rule.RuleModule = {
     };
   },
 };
-
-export = sortExportAll;

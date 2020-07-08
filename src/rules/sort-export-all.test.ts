@@ -1,12 +1,12 @@
 import { RuleTester } from "eslint";
 
-import rule from "./sort-export-all";
+import { sortExportAll } from "./sort-export-all";
 
 const tester = new RuleTester({
   parserOptions: { ecmaVersion: 2015, sourceType: "module" },
 });
 
-tester.run("sort-export-all", rule, {
+tester.run("sort-export-all", sortExportAll, {
   valid: [
     {
       code: `

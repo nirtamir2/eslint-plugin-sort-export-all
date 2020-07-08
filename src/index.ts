@@ -1,6 +1,6 @@
-import sortExportAll from "./rules/sort-export-all";
+import { sortExportAll } from "./rules/sort-export-all";
 
-export default {
+module.exports = {
   rules: {
     "sort-export-all": sortExportAll,
   },
