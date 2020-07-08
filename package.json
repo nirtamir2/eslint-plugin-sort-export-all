@@ -2,6 +2,10 @@
   "name": "eslint-plugin-sort-export-all",
   "version": "1.0.3",
   "description": "ESLint rule that helps sort export *",
+  "repository": {
+    "url": "https://github.com/nirtamir2/eslint-plugin-sort-export-all",
+    "type": "git"
+  },
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
