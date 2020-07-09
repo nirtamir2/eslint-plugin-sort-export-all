@@ -2,6 +2,8 @@
 
 ESLint rule that sorts `exports *` with autofix enabled
 
+[![npm version](https://badge.fury.io/js/eslint-plugin-sort-export-all.svg)](https://badge.fury.io/js/eslint-plugin-sort-export-all)
+
 ![Example](./example.gif)
 
 ## Installation
