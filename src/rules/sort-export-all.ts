@@ -97,7 +97,7 @@ export const sortExportAll: Rule.RuleModule = {
                 prevName,
               },
               fix(fixer) {
-                if (prevNode == null) return [];
+                if (prevNode == null) return null;
                 const fixes: Rule.Fix[] = [];
                 const sourceCode = context.getSourceCode();
                 const moveExportAllDeclaration = (
