@@ -89,15 +89,12 @@ export const sortExportAll: Rule.RuleModule = {
           if (isValidOrder(thisName, prevName)) {
             context.report({
               message:
-                "Expected export * order to be in {{natural}}{{insensitive}}{{order}}. '{{thisName}}' should be before '{{prevName}}'.",
+                "\"export * from '{{thisName}}'\" should occur before \"export * from '{{prevName}}'\".",
               node,
               ...(node.loc === null ? null : { loc: node.loc }),
               data: {
                 thisName,
                 prevName,
-                order,
-                insensitive: insensitive ? "insensitive " : "",
-                natural: natural ? "natural " : "",
               },
               fix(fixer) {
                 if (prevNode == null) return [];
