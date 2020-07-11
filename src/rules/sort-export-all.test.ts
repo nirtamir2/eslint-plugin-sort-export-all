@@ -38,7 +38,7 @@ tester.run("sort-export-all", sortExportAll, {
       errors: [
         {
           message:
-            "Expected export * order to be in asc. './a' should be before './b'.",
+            "\"export * from './a'\" should occur before \"export * from './b'\".",
         },
       ],
       output: `
@@ -55,7 +55,7 @@ tester.run("sort-export-all", sortExportAll, {
       errors: [
         {
           message:
-            "Expected export * order to be in asc. './a' should be before './b'.",
+            "\"export * from './a'\" should occur before \"export * from './b'\".",
         },
       ],
       output: `
@@ -73,29 +73,13 @@ tester.run("sort-export-all", sortExportAll, {
       errors: [
         {
           message:
-            "Expected export * order to be in asc. './b' should be before './c'.",
+            "\"export * from './b'\" should occur before \"export * from './c'\".",
         },
       ],
       output: `
       export * from "./a";
       export * from "./b";
       export * from "./c";
-    `,
-    },
-    {
-      code: `
-      export * from "./ca/cb";
-      export * from "./a";
-    `,
-      errors: [
-        {
-          message:
-            "Expected export * order to be in asc. './a' should be before './ca/cb'.",
-        },
-      ],
-      output: `
-      export * from "./a";
-      export * from "./ca/cb";
     `,
     },
     {
@@ -106,7 +90,7 @@ tester.run("sort-export-all", sortExportAll, {
       errors: [
         {
           message:
-            "Expected export * order to be in asc. './a' should be before './ca/cb'.",
+            "\"export * from './a'\" should occur before \"export * from './ca/cb'\".",
         },
       ],
       output: `
