@@ -51,9 +51,6 @@
   "peerDependencies": {
     "eslint": "^4 || ^5 || ^6 || ^7"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "jest": {
     "transform": {
       "^.+\\.ts$": "ts-jest"
