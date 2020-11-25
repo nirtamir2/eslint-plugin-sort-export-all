@@ -26,18 +26,6 @@ $ npm install eslint-plugin-sort-export-all --save-dev
 
 ## Usage
 
-### Recommended config
-
-Add to your ESLint config
-
-```json
-{
-  "extends": ["plugin:sort-export-all/recommended"]
-}
-```
-
-### Plugin
-
 Add `sort-export-all` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
@@ -46,13 +34,21 @@ Add `sort-export-all` to the plugins section of your `.eslintrc` configuration f
 }
 ```
 
-Then add `sort-export-all` rule under the rules section.
+Then configure the rule under the rules section.
 
 ```json
 {
   "rules": {
     "sort-export-all/sort-export-all": "warn"
   }
+}
+```
+
+Or enable it with defaults
+
+```json
+{
+  "extends": ["plugin:sort-export-all/recommended"]
 }
 ```
 
