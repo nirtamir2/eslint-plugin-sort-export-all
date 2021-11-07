@@ -13,11 +13,10 @@ module.exports = {
   },
   extends: [
     "airbnb-base",
-    "prettier",
-    "prettier/@typescript-eslint",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier",
   ],
   rules: {
     "@typescript-eslint/ban-ts-comment": 0,
