@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-sort-export-all",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "ESLint rule that helps sort export *",
   "repository": {
     "url": "https://github.com/nirtamir2/eslint-plugin-sort-export-all",
