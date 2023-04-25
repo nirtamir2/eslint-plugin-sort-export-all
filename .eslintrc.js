@@ -19,6 +19,7 @@ module.exports = {
     "prettier",
   ],
   rules: {
+    "import/no-import-module-exports": 0,
     "@typescript-eslint/ban-ts-comment": 0,
     "no-restricted-syntax": 0,
     "import/prefer-default-export": 0,
