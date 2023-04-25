@@ -11,15 +11,17 @@ ESLint rule that sorts `exports *` with autofix enabled
 You'll first need to install [ESLint](http://eslint.org):
 
 ```
-$ yarn add eslint --dev
 $ npm i eslint --save-dev
+$ yarn add eslint --dev
+$ pnpm add -D eslint
 ```
 
 Next, install `eslint-plugin-sort-export-all`:
 
 ```
-$ yarn add eslint-plugin-sort-export-all --dev
 $ npm install eslint-plugin-sort-export-all --save-dev
+$ yarn add eslint-plugin-sort-export-all --dev
+$ pnpm add -D eslint-plugin-sort-export-all
 ```
 
 **Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-sort-export-all` globally.
