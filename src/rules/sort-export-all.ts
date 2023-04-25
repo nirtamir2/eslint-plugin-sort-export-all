@@ -78,6 +78,11 @@ export const sortExportAll: Rule.RuleModule = {
         if (node.type !== "ExportAllDeclaration") {
           return;
         }
+        // This ignores cases like `export type *` in TypeScript 5.0
+        // It assumes we use @typescript-eslint/parser parser
+        if ("exportKind" in node && node.exportKind === "type") {
+          return;
+        }
         if (
           prevNode != null &&
           typeof node.source.value === "string" &&

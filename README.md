@@ -73,6 +73,9 @@ Often it makes sense to enable `sort-export-all` only for certain files/director
 }
 ```
 
+If you use TypeScript,
+make sure to use [ @typescript-eslint/parser](https://github.com/typescript-eslint/typescript-eslint) as parser for better compatability.
+
 ## Rule configuration
 
 - The 1st option is `"asc"` or `"desc"`.
@@ -85,7 +88,7 @@ Often it makes sense to enable `sort-export-all` only for certain files/director
 
   `caseSensitive` - if `true`, enforce properties to be in case-sensitive order. Default is `true`.
 
-  `natural` - if `true`, enforce properties to be in natural order. Default is false. Natural Order compares strings containing combination of letters and numbers in the way a human being would sort. It basically sorts numerically, instead of sorting alphabetically. So the number 10 comes after the number `3` in Natural Sorting.
+  `natural` - if `true`, enforce properties to be in natural order. Default is false. Natural Order compares strings containing a combination of letters and numbers in the way a human being would sort. It basically sorts numerically, instead of sorting alphabetically. So the number 10 comes after the number `3` in Natural Sorting.
 
   ```
   Standard sorting:   Natural order sorting:

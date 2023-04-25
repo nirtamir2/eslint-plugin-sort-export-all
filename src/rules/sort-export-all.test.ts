@@ -100,3 +100,40 @@ tester.run("sort-export-all", sortExportAll, {
     },
   ],
 });
+
+const typescriptTester = new RuleTester({
+  parser: require.resolve("@typescript-eslint/parser"),
+  parserOptions: { ecmaVersion: 2015, sourceType: "module" },
+});
+
+typescriptTester.run("sort-export-all", sortExportAll, {
+  valid: [
+    {
+      code: `
+      export * from './constants';
+      export type * from './types';
+      export * from './utils';
+    `,
+    },
+  ],
+  invalid: [
+    {
+      code: `
+      export * from './utils';
+      export type * from './types';
+      export * from './constants';
+    `,
+      errors: [
+        {
+          message:
+            "\"export * from './constants'\" should occur before \"export * from './utils'\".",
+        },
+      ],
+      output: `
+      export * from './constants';
+      export type * from './types';
+      export * from './utils';
+    `,
+    },
+  ],
+});
