@@ -73,6 +73,9 @@ Often it makes sense to enable `sort-export-all` only for certain files/director
 }
 ```
 
+If you use TypeScript,
+make sure to use [ @typescript-eslint/parser](https://github.com/typescript-eslint/typescript-eslint) as parser for better compatability.
+
 ## Rule configuration
 
 - The 1st option is `"asc"` or `"desc"`.
