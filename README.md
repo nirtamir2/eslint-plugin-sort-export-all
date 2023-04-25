@@ -66,7 +66,7 @@ Often it makes sense to enable `sort-export-all` only for certain files/director
     {
       "files": ["src/**/index.{ts,js}"],
       "rules": {
-        "sort-export-all/sort-export-all": "error
+        "sort-export-all/sort-export-all": "error"
       }
     }
   ]
