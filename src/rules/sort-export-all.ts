@@ -111,7 +111,7 @@ export default createEslintRule<Options, MessageIds>({
               fix(fixer) {
                 if (prevNode == null) return null;
                 const fixes: Array<RuleFix> = [];
-                const sourceCode = context.getSourceCode();
+                const { sourceCode } = context;
                 const moveExportAllDeclaration = (
                   fromNode: TSESTree.ExportAllDeclaration,
                   toNode: TSESTree.ExportAllDeclaration,
