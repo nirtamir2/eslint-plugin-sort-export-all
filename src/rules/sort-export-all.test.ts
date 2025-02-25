@@ -149,8 +149,8 @@ run({
 
       output: ts`
         export * from "./a";
-        export * from "./c";
         export * from "./b";
+        export * from "./c";
       `,
     },
   ],

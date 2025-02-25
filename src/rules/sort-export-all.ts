@@ -84,7 +84,7 @@ export default createEslintRule<Options, MessageIds>({
       throw new Error("Invalid options");
     }
 
-    let prevNode: TSESTree.ExportAllDeclaration | null = null;
+    const nodes: Array<TSESTree.ExportAllDeclaration> = [];
     return {
       ExportAllDeclaration: (node) => {
         if (node.type !== "ExportAllDeclaration") {
@@ -95,21 +95,36 @@ export default createEslintRule<Options, MessageIds>({
         if ("exportKind" in node && node.exportKind === "type") {
           return;
         }
-        if (prevNode != null) {
-          const thisName = node.source.value;
-          const prevName = prevNode.source.value;
+        nodes.push(node);
+      },
+      "Program:exit": () => {
+        const sortedNodes = nodes.toSorted((a, b) => {
+          return isValidOrder(a.source.value, b.source.value) ? -1 : 1;
+        });
 
+        for (const [index, sortedNode] of sortedNodes.entries()) {
+          if (nodes[index] === sortedNode) {
+            continue;
+          }
+
+          const node = nodes[index];
+          if (node == null) {
+            continue;
+          }
+
+          const thisName = sortedNode.source.value;
+          const prevName = node.source.value;
           if (isValidOrder(thisName, prevName)) {
             context.report({
               messageId: "unorderedSortExportAll",
-              node,
-              ...(node.loc === null ? null : { loc: node.loc }),
+              node: sortedNode,
+              ...(sortedNode.loc === null ? null : { loc: sortedNode.loc }),
               data: {
                 thisName,
                 prevName,
               },
               fix(fixer) {
-                if (prevNode == null) return null;
+                if (node == null) return null;
                 const fixes: Array<RuleFix> = [];
                 const { sourceCode } = context;
                 const moveExportAllDeclaration = (
@@ -129,14 +144,13 @@ export default createEslintRule<Options, MessageIds>({
                   }
                   fixes.push(fixer.replaceText(toNode, prevText));
                 };
-                moveExportAllDeclaration(node, prevNode);
-                moveExportAllDeclaration(prevNode, node);
+                moveExportAllDeclaration(node, sortedNode);
+                moveExportAllDeclaration(sortedNode, node);
                 return fixes;
               },
             });
           }
         }
-        prevNode = node;
       },
     };
   },
