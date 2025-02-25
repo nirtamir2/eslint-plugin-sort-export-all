@@ -9,6 +9,6 @@ export const plugin = {
   },
   // @keep-sorted
   rules: {
-    "default-import-name": sortExportAll,
+    "sort-export-all": sortExportAll,
   },
 } satisfies ESLint.Plugin;
