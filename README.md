@@ -40,8 +40,6 @@ export default [
 ];
 ```
 
-[Rules List](./src/rules)
-
 ## License
 
 [MIT](./LICENSE) License © 2020-PRESENT [Nir Tamir](https://github.com/nirtamir2)
