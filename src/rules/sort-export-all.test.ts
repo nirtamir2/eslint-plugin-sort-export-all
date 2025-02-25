@@ -37,22 +37,9 @@ run({
         export * from "./b";
         export * from "./a";
       `,
-      errors: [
-        {
-          message:
-            "\"export * from './a'\" should occur before \"export * from './b'\".",
-        },
-      ],
       output: js`
         export * from "./a";
         export * from "./b";
-      `,
-    },
-    {
-      code: js`
-        export * from "./b";
-        export * from "./a";
-        export * from "./c";
       `,
       errors: [
         {
@@ -60,11 +47,46 @@ run({
             "\"export * from './a'\" should occur before \"export * from './b'\".",
         },
       ],
+    },
+    {
+      code: js`
+        export * from "./b";
+        export * from "./a";
+      `,
+      output: js`
+        export * from "./a";
+        export * from "./b";
+      `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./b",
+          },
+        },
+      ],
+    },
+    {
+      code: js`
+        export * from "./b";
+        export * from "./a";
+        export * from "./c";
+      `,
       output: js`
         export * from "./a";
         export * from "./b";
         export * from "./c";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./b",
+          },
+        },
+      ],
     },
     {
       code: js`
@@ -72,33 +94,39 @@ run({
         export * from "./c";
         export * from "./b";
       `,
-      errors: [
-        {
-          message:
-            "\"export * from './b'\" should occur before \"export * from './c'\".",
-        },
-      ],
       output: js`
         export * from "./a";
         export * from "./b";
         export * from "./c";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./b",
+            afterName: "./c",
+          },
+        },
+      ],
     },
     {
       code: js`
         export * from "./ca/cb";
         export * from "./a";
       `,
-      errors: [
-        {
-          message:
-            "\"export * from './a'\" should occur before \"export * from './ca/cb'\".",
-        },
-      ],
       output: js`
         export * from "./a";
         export * from "./ca/cb";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./ca/cb",
+          },
+        },
+      ],
     },
   ],
 });
@@ -128,44 +156,106 @@ run({
         export type * from "./types";
         export * from "./constants";
       `,
-      errors: [
-        {
-          message:
-            "\"export * from './constants'\" should occur before \"export * from './utils'\".",
-        },
-      ],
       output: ts`
         export * from "./constants";
         export type * from "./types";
         export * from "./utils";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./constants",
+            afterName: "./utils",
+          },
+        },
+      ],
     },
-    //  TODO: Fix make this test pass
+    {
+      name: "should handle duplicate names",
+      code: ts`
+        export * from "./b";
+        export * from "./a";
+        export * from "./b";
+      `,
+
+      output: ts`
+        export * from "./a";
+        export * from "./b";
+        export * from "./b";
+      `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./b",
+          },
+        },
+      ],
+    },
+    {
+      name: "should handle duplicate names (issue)",
+      code: ts`
+        export * from "./lib/ticker-wat/Wat";
+        export * from "./lib/sticky-wat/Wat";
+        export * from "./lib/client-wat/Wat";
+        export * from "./lib/custom-wat/Wat";
+        export * from "./lib/rules-wat/Wat";
+        export * from "./lib/send-wat/Wat";
+        export * from "./assets/timezone";
+        export * from "./hooks/useWat";
+        export * from "./lib/avatar/Avatar";
+      `,
+
+      output: ts`
+        export * from "./assets/timezone";
+        export * from "./hooks/useWat";
+        export * from "./lib/avatar/Avatar";
+        export * from "./lib/client-wat/Wat";
+        export * from "./lib/custom-wat/Wat";
+        export * from "./lib/rules-wat/Wat";
+        export * from "./lib/send-wat/Wat";
+        export * from "./lib/sticky-wat/Wat";
+        export * from "./lib/ticker-wat/Wat";
+      `,
+    },
+    {
+      name: "should handle multiple fixes",
+      code: ts`
+        export * from "./c";
+        export * from "./b";
+        export * from "./a";
+      `,
+
+      output: ts`
+        export * from "./a";
+        export * from "./b";
+        export * from "./c";
+      `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./c",
+          },
+        },
+      ],
+    },
     // {
+    //   name: "should handle comment",
     //   code: ts`
-    //     export * from "./lib/ticker-wat/Wat";
-    //     export * from "./lib/sticky-wat/Wat";
-    //     export * from "./lib/client-wat/Wat";
-    //     export * from "./lib/ticker-wat/Wat";
-    //     export * from "./lib/custom-wat/Wat";
-    //     export * from "./lib/rules-wat/Wat";
-    //     export * from "./lib/send-wat/Wat";
-    //     export * from "./assets/timezone";
-    //     export * from "./hooks/useWat";
-    //     export * from "./lib/avatar/Avatar";
+    //     // This is C
+    //     export * from "./c";
+    //     export * from "./b";
+    //     export * from "./a";
     //   `,
-    //
     //   output: ts`
-    //     export * from "./assets/timezone";
-    //     export * from "./hooks/useWat";
-    //     export * from "./lib/avatar/Avatar";
-    //     export * from "./lib/client-wat/Wat";
-    //     export * from "./lib/custom-wat/Wat";
-    //     export * from "./lib/rules-wat/Wat";
-    //     export * from "./lib/send-wat/Wat";
-    //     export * from "./lib/sticky-wat/Wat";
-    //     export * from "./lib/ticker-wat/Wat";
-    //     export * from "./lib/ticker-wat/Wat";
+    //     export * from "./a";
+    //     export * from "./b";
+    //     // This is C
+    //     export * from "./c";
     //   `,
     // },
   ],

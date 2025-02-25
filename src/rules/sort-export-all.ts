@@ -48,7 +48,7 @@ export default createEslintRule<Options, MessageIds>({
     },
     messages: {
       unorderedSortExportAll:
-        "\"export * from '{{thisName}}'\" should occur before \"export * from '{{prevName}}'\".",
+        "\"export * from '{{beforeName}}'\" should occur before \"export * from '{{afterName}}'\".",
     },
     schema: [
       {
@@ -84,7 +84,7 @@ export default createEslintRule<Options, MessageIds>({
       throw new Error("Invalid options");
     }
 
-    let prevNode: TSESTree.ExportAllDeclaration | null = null;
+    const nodes: Array<TSESTree.ExportAllDeclaration> = [];
     return {
       ExportAllDeclaration: (node) => {
         if (node.type !== "ExportAllDeclaration") {
@@ -95,23 +95,38 @@ export default createEslintRule<Options, MessageIds>({
         if ("exportKind" in node && node.exportKind === "type") {
           return;
         }
-        if (prevNode != null) {
-          const thisName = node.source.value;
-          const prevName = prevNode.source.value;
+        nodes.push(node);
+      },
+      "Program:exit": () => {
+        const sortedNodes = nodes.toSorted((a, b) => {
+          return isValidOrder(a.source.value, b.source.value) ? -1 : 1;
+        });
 
-          if (isValidOrder(thisName, prevName)) {
+        for (const [index, sortedNode] of sortedNodes.entries()) {
+          const node = nodes[index];
+          if (node == null) {
+            continue;
+          }
+
+          if (node.source.value === sortedNode.source.value) {
+            continue;
+          }
+
+          const beforeName = sortedNode.source.value;
+          const afterName = node.source.value;
+          if (isValidOrder(beforeName, afterName)) {
             context.report({
               messageId: "unorderedSortExportAll",
-              node,
-              ...(node.loc === null ? null : { loc: node.loc }),
+              node: sortedNode,
+              ...(sortedNode.loc === null ? null : { loc: sortedNode.loc }),
               data: {
-                thisName,
-                prevName,
+                beforeName,
+                afterName,
               },
               fix(fixer) {
-                if (prevNode == null) return null;
+                if (node == null) return null;
                 const fixes: Array<RuleFix> = [];
-                const sourceCode = context.getSourceCode();
+                const { sourceCode } = context;
                 const moveExportAllDeclaration = (
                   fromNode: TSESTree.ExportAllDeclaration,
                   toNode: TSESTree.ExportAllDeclaration,
@@ -129,14 +144,13 @@ export default createEslintRule<Options, MessageIds>({
                   }
                   fixes.push(fixer.replaceText(toNode, prevText));
                 };
-                moveExportAllDeclaration(node, prevNode);
-                moveExportAllDeclaration(prevNode, node);
+                moveExportAllDeclaration(node, sortedNode);
+                moveExportAllDeclaration(sortedNode, node);
                 return fixes;
               },
             });
           }
         }
-        prevNode = node;
       },
     };
   },
