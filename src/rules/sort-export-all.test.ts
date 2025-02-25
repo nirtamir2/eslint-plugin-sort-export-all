@@ -43,6 +43,22 @@ run({
       `,
       errors: [
         {
+          message:
+            "\"export * from './a'\" should occur before \"export * from './b'\".",
+        },
+      ],
+    },
+    {
+      code: js`
+        export * from "./b";
+        export * from "./a";
+      `,
+      output: js`
+        export * from "./a";
+        export * from "./b";
+      `,
+      errors: [
+        {
           messageId: "unorderedSortExportAll",
           data: {
             beforeName: "./a",
