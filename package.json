@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-sort-export-all",
   "type": "module",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "packageManager": "pnpm@10.4.0",
   "description": "ESLint rule that helps sort export *",
   "author": "Nir Tamir <nirtamir2@gmail.com>",
