@@ -1,70 +1,107 @@
 {
   "name": "eslint-plugin-sort-export-all",
-  "version": "1.4.1",
+  "type": "module",
+  "version": "2.0.0",
+  "packageManager": "pnpm@10.4.0",
   "description": "ESLint rule that helps sort export *",
+  "author": "Nir Tamir <nirtamir2@gmail.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/nirtamir2",
+  "homepage": "https://github.com/nirtamir2/eslint-plugin-sort-export-all#readme",
   "repository": {
-    "url": "https://github.com/nirtamir2/eslint-plugin-sort-export-all",
-    "type": "git"
+    "type": "git",
+    "url": "git+https://github.com/nirtamir2/eslint-plugin-sort-export-all.git"
   },
-  "main": "lib/index.js",
-  "scripts": {
-    "clean": "rimraf lib",
-    "build": "tsc",
-    "test": "jest",
-    "prettier": "prettier --write \"**/*.{ts,js,json}\"",
-    "lint": "eslint --fix \"src/**/*.{ts,js,json}\"",
-    "prepublish": "npm run clean && npm run build"
-  },
-  "files": [
-    "README.md",
-    "package.json",
-    "lib"
-  ],
+  "bugs": "https://github.com/nirtamir2/eslint-plugin-sort-export-all/issues",
   "keywords": [
     "eslint",
     "eslintplugin",
-    "eslint-plugin"
+    "eslint-plugin",
+    "import"
   ],
-  "author": "Nir Tamir <nirtamir2@gmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/eslint": "^8.37.0",
-    "@types/natural-compare": "^1.4.1",
-    "@types/node": "^18.16.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.1",
-    "@typescript-eslint/parser": "^5.59.1",
-    "concurrently": "^8.0.1",
-    "eslint": "^8.39.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-config-typescript": "^3.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "jest": "^29.5.0",
-    "prettier": "^2.8.8",
-    "rimraf": "^5.0.0",
-    "ts-jest": "^29.1.0",
-    "typescript": "~5.0.4"
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./config": {
+      "types": "./dist/config.d.mts",
+      "default": "./dist/config.mjs"
+    },
+    "./types": {
+      "types": "./dist/types.d.mts",
+      "default": "./dist/types.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/index.d.mts",
+        "./dist/*"
+      ],
+      "./config": [
+        "./dist/config.d.mts"
+      ],
+      "./types": [
+        "./dist/types.d.mts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "ci": "pnpm run --parallel --aggregate-output \"/^(lint|format|type-check).*/\"",
+    "dev": "unbuild --stub",
+    "format": "prettier \"**/*\" --write --ignore-unknown --log-level silent",
+    "lint": "pnpm run dev && eslint . --fix",
+    "prepare": "simple-git-hooks",
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "type-check": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "eslint": "*"
   },
   "dependencies": {
     "natural-compare": "^1.4.0"
   },
-  "peerDependencies": {
-    "eslint": "^4 || ^5 || ^6 || ^7 || ^8"
+  "devDependencies": {
+    "@nirtamir2/eslint-config": "0.0.2-beta.20",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/eslint": "^9.6.1",
+    "@types/natural-compare": "^1.4.3",
+    "@types/node": "^22.13.1",
+    "@typescript-eslint/typescript-estree": "^8.24.0",
+    "@typescript-eslint/utils": "^8.24.0",
+    "bumpp": "^10.0.2",
+    "ci-info": "^4.1.0",
+    "code-tag": "^1.2.0",
+    "eslint": "^9.20.0",
+    "eslint-define-config": "^2.1.0",
+    "eslint-vitest-rule-tester": "^1.1.0",
+    "esno": "^4.8.0",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.0",
+    "prettier-plugin-embed": "^0.4.15",
+    "prettier-plugin-packagejson": "^2.5.8",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.7.3",
+    "unbuild": "^3.3.1",
+    "vitest": "^3.0.5"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "testRegex": "(src/.*\\.test)\\.ts$",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "\\.d\\.ts$",
-      "lib/.*"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "ts",
-      "json"
-    ]
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }

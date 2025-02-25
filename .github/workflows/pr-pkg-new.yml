@@ -1,0 +1,26 @@
+name: Publish Any Commit
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # corepack bug requires me to add `npm i -g --force corepack &&` before `corepack enable`
+      # @see https://github.com/actions/setup-node/issues/1222#issuecomment-2631024706
+      - run: npm i -g --force corepack && corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - run: pnpx pkg-pr-new publish
