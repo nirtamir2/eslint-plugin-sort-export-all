@@ -95,11 +95,7 @@ export default createEslintRule<Options, MessageIds>({
         if ("exportKind" in node && node.exportKind === "type") {
           return;
         }
-        if (
-          prevNode != null &&
-          typeof node.source.value === "string" &&
-          typeof prevNode.source.value === "string"
-        ) {
+        if (prevNode != null) {
           const thisName = node.source.value;
           const prevName = prevNode.source.value;
 
