@@ -103,12 +103,12 @@ export default createEslintRule<Options, MessageIds>({
         });
 
         for (const [index, sortedNode] of sortedNodes.entries()) {
-          if (nodes[index] === sortedNode) {
+          const node = nodes[index];
+          if (node == null) {
             continue;
           }
 
-          const node = nodes[index];
-          if (node == null) {
+          if (node.source.value === sortedNode.source.value) {
             continue;
           }
 

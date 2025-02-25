@@ -141,10 +141,51 @@ run({
       `,
     },
     {
+      name: "should handle duplicate names",
       code: ts`
         export * from "./b";
         export * from "./a";
+        export * from "./b";
+      `,
+
+      output: ts`
+        export * from "./a";
+        export * from "./b";
+        export * from "./b";
+      `,
+    },
+    {
+      name: "should handle duplicate names (issue)",
+      code: ts`
+        export * from "./lib/ticker-wat/Wat";
+        export * from "./lib/sticky-wat/Wat";
+        export * from "./lib/client-wat/Wat";
+        export * from "./lib/custom-wat/Wat";
+        export * from "./lib/rules-wat/Wat";
+        export * from "./lib/send-wat/Wat";
+        export * from "./assets/timezone";
+        export * from "./hooks/useWat";
+        export * from "./lib/avatar/Avatar";
+      `,
+
+      output: ts`
+        export * from "./assets/timezone";
+        export * from "./hooks/useWat";
+        export * from "./lib/avatar/Avatar";
+        export * from "./lib/client-wat/Wat";
+        export * from "./lib/custom-wat/Wat";
+        export * from "./lib/rules-wat/Wat";
+        export * from "./lib/send-wat/Wat";
+        export * from "./lib/sticky-wat/Wat";
+        export * from "./lib/ticker-wat/Wat";
+      `,
+    },
+    {
+      name: "should handle multiple fixes",
+      code: ts`
         export * from "./c";
+        export * from "./b";
+        export * from "./a";
       `,
 
       output: ts`
