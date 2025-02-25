@@ -48,7 +48,7 @@ export default createEslintRule<Options, MessageIds>({
     },
     messages: {
       unorderedSortExportAll:
-        "\"export * from '{{thisName}}'\" should occur before \"export * from '{{prevName}}'\".",
+        "\"export * from '{{beforeName}}'\" should occur before \"export * from '{{afterName}}'\".",
     },
     schema: [
       {
@@ -112,16 +112,16 @@ export default createEslintRule<Options, MessageIds>({
             continue;
           }
 
-          const thisName = sortedNode.source.value;
-          const prevName = node.source.value;
-          if (isValidOrder(thisName, prevName)) {
+          const beforeName = sortedNode.source.value;
+          const afterName = node.source.value;
+          if (isValidOrder(beforeName, afterName)) {
             context.report({
               messageId: "unorderedSortExportAll",
               node: sortedNode,
               ...(sortedNode.loc === null ? null : { loc: sortedNode.loc }),
               data: {
-                thisName,
-                prevName,
+                beforeName,
+                afterName,
               },
               fix(fixer) {
                 if (node == null) return null;

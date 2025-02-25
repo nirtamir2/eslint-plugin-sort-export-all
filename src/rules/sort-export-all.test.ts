@@ -37,16 +37,19 @@ run({
         export * from "./b";
         export * from "./a";
       `,
-      errors: [
-        {
-          message:
-            "\"export * from './a'\" should occur before \"export * from './b'\".",
-        },
-      ],
       output: js`
         export * from "./a";
         export * from "./b";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./b",
+          },
+        },
+      ],
     },
     {
       code: js`
@@ -54,17 +57,20 @@ run({
         export * from "./a";
         export * from "./c";
       `,
-      errors: [
-        {
-          message:
-            "\"export * from './a'\" should occur before \"export * from './b'\".",
-        },
-      ],
       output: js`
         export * from "./a";
         export * from "./b";
         export * from "./c";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./b",
+          },
+        },
+      ],
     },
     {
       code: js`
@@ -72,33 +78,39 @@ run({
         export * from "./c";
         export * from "./b";
       `,
-      errors: [
-        {
-          message:
-            "\"export * from './b'\" should occur before \"export * from './c'\".",
-        },
-      ],
       output: js`
         export * from "./a";
         export * from "./b";
         export * from "./c";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./b",
+            afterName: "./c",
+          },
+        },
+      ],
     },
     {
       code: js`
         export * from "./ca/cb";
         export * from "./a";
       `,
-      errors: [
-        {
-          message:
-            "\"export * from './a'\" should occur before \"export * from './ca/cb'\".",
-        },
-      ],
       output: js`
         export * from "./a";
         export * from "./ca/cb";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./ca/cb",
+          },
+        },
+      ],
     },
   ],
 });
@@ -128,17 +140,20 @@ run({
         export type * from "./types";
         export * from "./constants";
       `,
-      errors: [
-        {
-          message:
-            "\"export * from './constants'\" should occur before \"export * from './utils'\".",
-        },
-      ],
       output: ts`
         export * from "./constants";
         export type * from "./types";
         export * from "./utils";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./constants",
+            afterName: "./utils",
+          },
+        },
+      ],
     },
     {
       name: "should handle duplicate names",
@@ -153,6 +168,15 @@ run({
         export * from "./b";
         export * from "./b";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./b",
+          },
+        },
+      ],
     },
     {
       name: "should handle duplicate names (issue)",
@@ -193,6 +217,15 @@ run({
         export * from "./b";
         export * from "./c";
       `,
+      errors: [
+        {
+          messageId: "unorderedSortExportAll",
+          data: {
+            beforeName: "./a",
+            afterName: "./c",
+          },
+        },
+      ],
     },
     // {
     //   name: "should handle comment",
