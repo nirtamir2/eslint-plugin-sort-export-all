@@ -1,6 +1,7 @@
-import { Rule } from "eslint";
-import ESTree from "estree";
 import naturalCompare from "natural-compare";
+import { createEslintRule } from "../utils";
+import type { TSESTree } from "@typescript-eslint/typescript-estree";
+import type { RuleFix } from "@typescript-eslint/utils/ts-eslint";
 
 const isValidOrders = {
   asc(a: string, b: string) {
@@ -28,19 +29,30 @@ const isValidOrders = {
     return isValidOrders.ascIN(b, a);
   },
 };
+export const RULE_NAME = "sort-export-all";
+export type MessageIds = "unorderedSortExportAll";
 
-export const sortExportAll: Rule.RuleModule = {
+export type Options =
+  | ["desc" | "ask", { caseSensitive?: boolean; natural?: boolean }]
+  | [];
+
+export default createEslintRule<Options, MessageIds>({
+  name: RULE_NAME,
+  defaultOptions: [],
   meta: {
     type: "suggestion",
     fixable: "code",
     docs: {
       description: "require export * to be sorted",
-      category: "Stylistic Issues",
-      recommended: false,
       url: "https://github.com/nirtamir2/eslint-plugin-sort-export-all",
+    },
+    messages: {
+      unorderedSortExportAll:
+        "\"export * from '{{thisName}}'\" should occur before \"export * from '{{prevName}}'\".",
     },
     schema: [
       {
+        type: "string",
         enum: ["asc", "desc"],
       },
       {
@@ -72,7 +84,7 @@ export const sortExportAll: Rule.RuleModule = {
       throw new Error("Invalid options");
     }
 
-    let prevNode: ESTree.ExportAllDeclaration | null = null;
+    let prevNode: TSESTree.ExportAllDeclaration | null = null;
     return {
       ExportAllDeclaration: (node) => {
         if (node.type !== "ExportAllDeclaration") {
@@ -93,8 +105,7 @@ export const sortExportAll: Rule.RuleModule = {
 
           if (isValidOrder(thisName, prevName)) {
             context.report({
-              message:
-                "\"export * from '{{thisName}}'\" should occur before \"export * from '{{prevName}}'\".",
+              messageId: "unorderedSortExportAll",
               node,
               ...(node.loc === null ? null : { loc: node.loc }),
               data: {
@@ -103,11 +114,11 @@ export const sortExportAll: Rule.RuleModule = {
               },
               fix(fixer) {
                 if (prevNode == null) return null;
-                const fixes: Rule.Fix[] = [];
+                const fixes: Array<RuleFix> = [];
                 const sourceCode = context.getSourceCode();
                 const moveExportAllDeclaration = (
-                  fromNode: ESTree.ExportAllDeclaration,
-                  toNode: ESTree.ExportAllDeclaration
+                  fromNode: TSESTree.ExportAllDeclaration,
+                  toNode: TSESTree.ExportAllDeclaration,
                 ) => {
                   const prevText = sourceCode.getText(fromNode);
                   const thisComments = sourceCode.getCommentsBefore(fromNode);
@@ -115,11 +126,9 @@ export const sortExportAll: Rule.RuleModule = {
                     fixes.push(
                       fixer.insertTextBefore(
                         toNode,
-                        // @ts-ignore
-                        `${sourceCode.getText(thisComment)}\n`
-                      )
+                        `${sourceCode.getText(thisComment)}\n`,
+                      ),
                     );
-                    // @ts-ignore
                     fixes.push(fixer.remove(thisComment));
                   }
                   fixes.push(fixer.replaceText(toNode, prevText));
@@ -135,4 +144,4 @@ export const sortExportAll: Rule.RuleModule = {
       },
     };
   },
-};
+});

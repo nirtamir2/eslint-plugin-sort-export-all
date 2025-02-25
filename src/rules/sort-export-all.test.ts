@@ -1,139 +1,144 @@
-import { RuleTester } from "eslint";
+import tsParser from "@typescript-eslint/parser";
+import { any as js } from "code-tag";
+import rule, { RULE_NAME } from "./sort-export-all";
+import { run } from "./_test";
 
-import { sortExportAll } from "./sort-export-all";
-
-const tester = new RuleTester({
+run({
   parserOptions: { ecmaVersion: 2015, sourceType: "module" },
-});
-
-tester.run("sort-export-all", sortExportAll, {
+  name: RULE_NAME,
+  rule,
   valid: [
     {
-      code: `
-      export * from "./a";
-      export * from "./b";
-    `,
+      code: js`
+        export * from "./a";
+        export * from "./b";
+      `,
     },
     {
-      code: `
-      export * from "./BackgroundGradientImage";
-      export * from "./Fab";
-      export * from "./variables/colors";
-      export * from "./variables/dimensions";`,
+      code: js`
+        export * from "./BackgroundGradientImage";
+        export * from "./Fab";
+        export * from "./variables/colors";
+        export * from "./variables/dimensions";
+      `,
     },
     {
-      code: `
-      export * from "./BackgroundGradientImage";
-      export * from "./Fab";
-      export * from "./variables/colors";
-      export * from "./variables/dimensions";`,
+      code: js`
+        export * from "./BackgroundGradientImage";
+        export * from "./Fab";
+        export * from "./variables/colors";
+        export * from "./variables/dimensions";
+      `,
     },
   ],
   invalid: [
     {
-      code: `
-      export * from "./b";
-      export * from "./a";
-    `,
+      code: js`
+        export * from "./b";
+        export * from "./a";
+      `,
       errors: [
         {
           message:
             "\"export * from './a'\" should occur before \"export * from './b'\".",
         },
       ],
-      output: `
-      export * from "./a";
-      export * from "./b";
-    `,
+      output: js`
+        export * from "./a";
+        export * from "./b";
+      `,
     },
     {
-      code: `
-      export * from "./b";
-      export * from "./a";
-      export * from "./c";
-    `,
+      code: js`
+        export * from "./b";
+        export * from "./a";
+        export * from "./c";
+      `,
       errors: [
         {
           message:
             "\"export * from './a'\" should occur before \"export * from './b'\".",
         },
       ],
-      output: `
-      export * from "./a";
-      export * from "./b";
-      export * from "./c";
-    `,
+      output: js`
+        export * from "./a";
+        export * from "./b";
+        export * from "./c";
+      `,
     },
     {
-      code: `
-      export * from "./a";
-      export * from "./c";
-      export * from "./b";
-    `,
+      code: js`
+        export * from "./a";
+        export * from "./c";
+        export * from "./b";
+      `,
       errors: [
         {
           message:
             "\"export * from './b'\" should occur before \"export * from './c'\".",
         },
       ],
-      output: `
-      export * from "./a";
-      export * from "./b";
-      export * from "./c";
-    `,
+      output: js`
+        export * from "./a";
+        export * from "./b";
+        export * from "./c";
+      `,
     },
     {
-      code: `
-      export * from "./ca/cb";
-      export * from "./a";
-    `,
+      code: js`
+        export * from "./ca/cb";
+        export * from "./a";
+      `,
       errors: [
         {
           message:
             "\"export * from './a'\" should occur before \"export * from './ca/cb'\".",
         },
       ],
-      output: `
-      export * from "./a";
-      export * from "./ca/cb";
-    `,
+      output: js`
+        export * from "./a";
+        export * from "./ca/cb";
+      `,
     },
   ],
 });
 
-const typescriptTester = new RuleTester({
-  parser: require.resolve("@typescript-eslint/parser"),
-  parserOptions: { ecmaVersion: 2015, sourceType: "module" },
-});
+const ts = js;
 
-typescriptTester.run("sort-export-all", sortExportAll, {
+run({
+  name: RULE_NAME,
+  rule,
+  languageOptions: {
+    parser: tsParser,
+  },
+  parserOptions: { ecmaVersion: 2015, sourceType: "module" },
   valid: [
     {
-      code: `
-      export * from './constants';
-      export type * from './types';
-      export * from './utils';
-    `,
+      code: ts`
+        export * from "./constants";
+        export type * from "./types";
+        export * from "./utils";
+      `,
     },
   ],
   invalid: [
     {
-      code: `
-      export * from './utils';
-      export type * from './types';
-      export * from './constants';
-    `,
+      code: ts`
+        export * from "./utils";
+        export type * from "./types";
+        export * from "./constants";
+      `,
       errors: [
         {
           message:
             "\"export * from './constants'\" should occur before \"export * from './utils'\".",
         },
       ],
-      output: `
-      export * from './constants';
-      export type * from './types';
-      export * from './utils';
-    `,
+      output: ts`
+        export * from "./constants";
+        export type * from "./types";
+        export * from "./utils";
+      `,
     },
   ],
 });
