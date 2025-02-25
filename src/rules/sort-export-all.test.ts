@@ -194,5 +194,20 @@ run({
         export * from "./c";
       `,
     },
+    // {
+    //   name: "should handle comment",
+    //   code: ts`
+    //     // This is C
+    //     export * from "./c";
+    //     export * from "./b";
+    //     export * from "./a";
+    //   `,
+    //   output: ts`
+    //     export * from "./a";
+    //     export * from "./b";
+    //     // This is C
+    //     export * from "./c";
+    //   `,
+    // },
   ],
 });
